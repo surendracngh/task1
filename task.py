@@ -1,36 +1,20 @@
-import json
+import numpy as np
 
-def register(username,password):
-    dict_credential = {username:password}
-    json_credential = json.dumps(dict_credential)
-    file = open("dict_credential.txt","a")
-    file.write(json_credential+"-")
-    file.close()
+list1 = [1,2,3,4,5,6,7,9]
+list2 = [7,5,4,67,564,453]
+list3 = [2.3,6.7,9.9,7.7]
+list4 = [12,3,43,65,75,342]
+list5 = [3.3,4.4,7.7,4.98]
 
-def login(username,password):
-    file = open("dict_credential.txt","r")
-    content = file.read()
-    file.close()
+arr1 = np.array(list1)
+arr2 = np.array(list2)
+arr3 = np.array(list3)
+arr4 = np.array(list4)
+arr5 = np.array(list5)
+
+print(arr1, "Type:", type(arr1))
+print(arr2, "Type:", type(arr2))
+print(arr3, "Type:", type(arr3))
+print(arr4, "Type:", type(arr4))
+print(arr5, "Type:", type(arr5))
     
-    json_credential = content.split("-") 
-    for i in json_credential:
-        if i != "":
-            dict_i = json.loads(i)
-            if username in dict_i and dict_i[username]==password:
-                print("Login Successful.")
-                break
-    else:
-        print("Invalid credential. Please try again")
-
-choice = input("Enter r for register and l for login: ").lower()
-match choice:
-    case 'r':
-        username = input("ENter your username: ")
-        password = input("Enter your password: ")
-        register(username,password)
-    case 'l':
-        username_l = input("ENter your username: ")
-        password_l = input("Enter your password: ")
-        login(username_l,password_l)
-    case _:
-        print("Invalid input. Please try again")
